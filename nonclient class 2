@@ -1,0 +1,68 @@
+/******************************************************************************
+Eric Zhang
+Comp Sci 3
+March 23, 2021
+High-Low Program
+*******************************************************************************/
+public class Deck
+{
+    private int cardsdealt;
+    private Card [] deck;
+    //Default constructor - only needs this
+        //because we only make the same deck of cards
+    public Deck ()
+    {
+        String [] suits = {"Hearts", "Diamonds", "Spades", "Clubs"};
+        cardsdealt = 0;
+        Card card;
+        int cardnum = 0;
+        deck = new Card [52]; //Card # 0 - 51
+        
+        for (String suit: suits)
+        {
+            for (int i = 1; i <= 13; i++)
+            {
+                card = new Card (i , suit);
+                deck [cardnum] = card;
+                cardnum++;
+            }
+        }
+    }
+    //create a nested for loop    
+        // 1 - to keep track of suit 
+        // 1 - to keep track of value
+    //shuffle cards 
+    public void shuffle ()
+    {
+        int rand;
+        int i;
+        Card temp;
+        for (i = 0; i <=  51; i++)
+        {
+            rand = (int)(Math.random () * 52); //picks a number from 0-51
+            
+            //swap them
+            
+            temp = deck [i];
+            deck [i] = deck[rand];
+            deck [rand] = temp;
+        }
+        cardsdealt = 0;
+    }
+    //deal cards
+    public Card dealcard ()
+    {
+        if (cardsdealt == 52)
+        {
+            throw new IllegalStateException ("No cards Left in the deck!");
+        }
+        else 
+        {
+            cardsdealt++;
+            //deal the card off the top of the deck
+            return deck[cardsdealt - 1];
+        }
+    }
+    
+    
+}
