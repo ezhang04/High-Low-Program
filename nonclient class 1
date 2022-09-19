@@ -1,0 +1,63 @@
+/******************************************************************************
+Eric Zhang
+Comp Sci 3
+March 23, 2021
+High-Low Program
+*******************************************************************************/
+public class Card
+{
+    private int value; //Ace is 1 11-13 will be JQK
+    private String suit;
+    public Card()
+    {
+        value = -1;
+        suit = "suit";
+    }
+    public Card (int v, String s)
+    {
+        value = v;
+        suit = s;
+    }
+    public int getValue ()
+    {
+        return value;
+    }
+    public String getSuit ()
+    {
+        return suit;
+    }
+    public String showValue ()
+    {
+        switch(value)
+        {
+            case 1:
+                return "Ace";
+            case 2:
+                return "Two";
+            case 3:
+                return "Three";
+            case 4:
+                return "Four";
+            case 5:
+                return "Five";
+            case 6:
+                return "Six";
+            case 7:
+                return "Seven";
+            case 8:
+                return "Eight";
+            case 9:
+                return "Nine";
+            case 10:
+                return "Ten";
+            case 11:
+                return "Jack";
+            case 12:
+                return "Queen";
+            case 13:
+                return "King";
+        }
+        return "oops";
+    }
+    
+}
