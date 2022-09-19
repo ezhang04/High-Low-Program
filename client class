@@ -1,0 +1,18 @@
+/******************************************************************************
+Eric Zhang
+Comp Sci 3
+March 23, 2021
+High-Low Program
+*******************************************************************************/
+import java.io.*;
+import java.util.ArrayList;
+public class Main
+{
+	public static void main(String[] args) throws IOException
+	{
+		DataInputStream reader = new DataInputStream(System.in);
+		String choice;
+		System.out.print("Welcome to High-Low. A card will be dealt from the deck and you have to predict whether the next card will be higher or lower. Your score is calculated by the number of correct guesses you make before you get one wrong!");
+		
+	}
+}
