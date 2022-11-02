@@ -2,17 +2,94 @@
 Eric Zhang
 Comp Sci 3
 March 23, 2021
-High-Low Program
+High-Low Program:Graded
 *******************************************************************************/
 import java.io.*;
-import java.util.ArrayList;
 public class Main
 {
+    public static String capitalize (String word)
+    {
+        word = word.toUpperCase ( );
+        return word;
+    }
 	public static void main(String[] args) throws IOException
 	{
 		DataInputStream reader = new DataInputStream(System.in);
 		String choice;
-		System.out.print("Welcome to High-Low. A card will be dealt from the deck and you have to predict whether the next card will be higher or lower. Your score is calculated by the number of correct guesses you make before you get one wrong!");
+		Deck deck = new Deck();
+		deck.shuffle();
+		Card current = new Card ();
+		int value;
+		int score;
+		boolean check = true;
+		String ok = "Y";
+		int highscore;
+		//deck made and shuffled 
+		BufferedReader inFile = new BufferedReader(new FileReader("Hi-Score.txt"));
+		highscore = Integer.parseInt(inFile.readLine());
+		while (ok.equals("Y"))
+		{
+		    score = 0 ;
+		    check = true;
+		    System.out.println("Welcome to High-Low. A card will be dealt from the deck and you have to predict whether the next card will be higher or lower. Your score is calculated by the number of correct guesses you make before you get one wrong!");
+            current = deck.dealCard();
+        	System.out.print("\n\nThe first card is the "+ current.showValue() + " of " + current.getSuit() + ".");
+    		while (check == true)
+    		{
+    		    value = current.getValue();
+    		    System.out.print("\n\nWill the next card be higher or lower? (H / L): ");
+    		    choice = reader.readLine();
+    		    choice = capitalize(choice);
+    		    while (!(choice.equals("H")) && !(choice.equals("L")))
+    		    {
+    		        System.out.print("\n\nInvalid input please enter H or L: ");
+    		        choice = reader.readLine();
+    		        choice = capitalize(choice);
+    		    }
+    		    current = deck.dealCard();
+    		    System.out.print("\n\nThe next card is the "+ current.showValue() + " of " + current.getSuit() + ".");
+    		    if ((choice.equals("H") && (current.getValue() > value)))
+    		    {
+    		        System.out.print("\n\nYour prediction was correct.");
+    		        score++;
+    		    }
+    		    else if ((choice.equals("L") && (current.getValue() < value)))
+    		    {
+    		        System.out.print("\n\nYour prediction was correct.");
+    		        score++;
+    		    }
+    		    else if ((choice.equals("H") && (current.getValue() < value)))
+    		    {
+    		        System.out.print("\n\nYour prediction was incorrect.");
+    		        check = false;
+    		    }
+    		    else if ((choice.equals("L") && (current.getValue() > value)))
+    		    {
+    		        System.out.print("\n\nYour prediction was incorrect.");
+    		        check = false;
+    		    }
+    		    else 
+    		    {
+    		        System.out.print("\n\nThe card value is the same. Sorry, you lose!");
+    		        check = false;
+    		    }
+    		}
+    		
+    		System.out.print("\n\nGame over! You made "+score+" correct predictions.");
+    		if (highscore < score)
+    		{
+    		    System.out.print("\n\nCongratulations! You beat the previous high score of "+highscore+" correct guesses!");
+    		    highscore = score;
+    		    
+    		}
+    		System.out.print("\n\nWould you like to play again? (Y / N): ");
+    		ok = reader.readLine();
+    		ok = capitalize(ok);
+    		PrintWriter outFile = new PrintWriter(new FileWriter("Hi-Score.txt"));
+    		outFile.print(highscore);
+    		inFile.close();
+        	outFile.close();
+		}
 		
 	}
 }
