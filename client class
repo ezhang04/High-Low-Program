@@ -32,7 +32,7 @@ public class Main
 		    score = 0 ;
 		    check = true;
 		    System.out.println("Welcome to High-Low. A card will be dealt from the deck and you have to predict whether the next card will be higher or lower. Your score is calculated by the number of correct guesses you make before you get one wrong!");
-            current = deck.dealCard();
+            current = deck.dealcard();
         	System.out.print("\n\nThe first card is the "+ current.showValue() + " of " + current.getSuit() + ".");
     		while (check == true)
     		{
@@ -46,7 +46,7 @@ public class Main
     		        choice = reader.readLine();
     		        choice = capitalize(choice);
     		    }
-    		    current = deck.dealCard();
+    		    current = deck.dealcard();
     		    System.out.print("\n\nThe next card is the "+ current.showValue() + " of " + current.getSuit() + ".");
     		    if ((choice.equals("H") && (current.getValue() > value)))
     		    {
